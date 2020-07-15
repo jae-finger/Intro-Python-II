@@ -7,6 +7,3 @@ class Player():
     
     def __str__(self):
         return f'The player is currently located: {self.room}'
-
-jon = Player()
-print(jon)
