@@ -39,25 +39,11 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player1 = Player(name='Jon')
+player1 = Player(name='Jon', room='outside')
 
 print(f'Hello! You currently playing as {player1.name}.\n')
-print(f'Your adventure begins {player1.room} ...')
+print(f'Your adventure begins {player1.room}...\n')
 
-# Input parser
-selection = int(input('How would you like to move?\nPlease input a number to select a direction. North=1, South=2, East=3, or West=4. Press 5 to quit.\n'))
-if selection == 1:
-    print(f'You moved north.')
-elif selection == 2:
-    print(f'You moved south.')
-elif selection == 3:
-    print(f'You moved east.')
-elif selection == 4:
-    print(f'You moved west.')
-elif selection == 5:
-    print(f'Good-bye!')
-else:
-    print(f"That's not a valid move!")
 
 # Write a loop that:
 #
@@ -69,4 +55,25 @@ else:
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+# Input parser
+
+selection = 0
+
+while selection not in ['n', 'e', 's', 'w']:
+    selection = input('How would you like to move?\nPlease use n, s, e, and w to move north, south, east, or west.\n')
+    try:
+        selection = str(selection)
+        if selection == 'n':
+            print(f'You moved north.')
+        elif selection == 's':
+            print(f'You moved south.')
+        elif selection == 'e':
+            print(f'You moved east.')
+        elif selection == 'w':
+            print(f'You moved west.')
+        else:
+            print('You input something wrong!')
+    except ValueError:
+        print('Please enter n, s, e, or w only.')
 
