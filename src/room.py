@@ -11,4 +11,4 @@ class Room():
         self.w_to = w_to
 
     def __str__(self):
-        return f'{self.name} | {self.description} | {self.n_to} | {self.e_to} | {self.w_to} | {self.s_to}'
+        return f'{self.name}'

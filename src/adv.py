@@ -1,11 +1,24 @@
 from room import Room
 from player import Player
 
+# # Declare all the rooms
+# outside = Room("Outside Cave Entrance",
+#                "North of you, the cave mount beckons", n_to='foyer')
+
+# foyer = Room("Foyer", "Dim light filters in from the south. Dusty passages run north and east.",
+#              s_to='outside', n_to='overlook', e_to='narrow')
+
+# overlook = Room("Grand Overlook", "A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm.", s_to='foyer')
+
+# narrow = Room("Narrow Passage", "The narrow passage bends here from west to north. The smell of gold permeates the air.",
+#               w_to='foyer', n_to='treasure')
+
+# treasure = Room("Treasure Chamber", "You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south.", s_to='narrow')
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-    "North of you, the cave mount beckons"),
+                     "North of you, the cave mouth beckons."),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -39,11 +52,10 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player1 = Player(name='Jon', room='outside')
+player1 = Player(name='Jon', player_room = Room("Outside Cave Entrance", "North of you, the cave mouth beckons."))
 
 print(f'Hello! You currently playing as {player1.name}.\n')
-print(f'Your adventure begins {player1.room}...\n')
-
+print(f'Your adventure begins {player1.player_room}...\n')
 
 # Write a loop that:
 #
@@ -55,25 +67,24 @@ print(f'Your adventure begins {player1.room}...\n')
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-
 # Input parser
-
-selection = 0
-
-while selection not in ['n', 'e', 's', 'w']:
-    selection = input('How would you like to move?\nPlease use n, s, e, and w to move north, south, east, or west.\n')
-    try:
-        selection = str(selection)
-        if selection == 'n':
-            print(f'You moved north.')
-        elif selection == 's':
-            print(f'You moved south.')
-        elif selection == 'e':
-            print(f'You moved east.')
-        elif selection == 'w':
-            print(f'You moved west.')
-        else:
-            print('You input something wrong!')
-    except ValueError:
-        print('Please enter n, s, e, or w only.')
-
+selection = 't'
+while selection not in ['n', 'e', 's', 'w', 'q']:
+    selection = input(
+        'How would you like to move?\nPlease use n, s, e, and w to move north, south, east, or west.\n')
+    selection = str(selection)
+    if selection == 'n':
+        print(f'You moved north.')
+        player1.move('n')
+    elif selection == 's':
+        print(f'You moved south.')
+    elif selection == 'e':
+        print(f'You moved east.')
+    elif selection == 'w':
+        print(f'You moved west.')
+    elif selection == 'w':
+        print(f'You moved west.')
+    elif selection == 'q':
+        print("So long, partner!")
+    else:
+        print('You typed something other than n, s, e, w, or q!')
