@@ -8,10 +8,25 @@ class Player():
 
     def move(self, command):
         if str(command) == 'n':
-            print(f"I'm currently in {self.player_room} but trying to move.")
-            self.player_room = self.player_room.n_to
-            print(f"I'm currently in {self.player_room} now.")
-        
+            if self.player_room.n_to == None:
+                print("You can't go that way, try a different direction.")
+            else:
+                self.player_room = self.player_room.n_to
+        elif str(command) == 's':
+            if self.player_room.s_to == None:
+                print("You can't go that way, try a different direction.")
+            else:
+                self.player_room = self.player_room.s_to
+        elif str(command) == 'e':
+            if self.player_room.e_to == None:
+                print("You can't go that way, try a different direction.")
+            else:
+                self.player_room = self.player_room.e_to
+        elif str(command) == 'w':
+            if self.player_room.w_to == None:
+                print("You can't go that way, try a different direction.")
+            else:
+                self.player_room = self.player_room.w_to
 
     def __str__(self):
         return f'{self.name}'

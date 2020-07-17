@@ -52,10 +52,11 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player1 = Player(name='Jon', player_room = Room("Outside Cave Entrance", "North of you, the cave mouth beckons."))
+player1 = Player(name='Jon', player_room=room['outside'])
 
 print(f'Hello! You currently playing as {player1.name}.\n')
-print(f'Your adventure begins {player1.player_room}...\n')
+print(
+    f'Your adventure begins {player1.player_room}... {player1.player_room.description}\n')
 
 # Write a loop that:
 #
@@ -69,22 +70,26 @@ print(f'Your adventure begins {player1.player_room}...\n')
 # If the user enters "q", quit the game.
 # Input parser
 selection = 't'
-while selection not in ['n', 'e', 's', 'w', 'q']:
+while selection not in ['q']:
     selection = input(
-        'How would you like to move?\nPlease use n, s, e, and w to move north, south, east, or west.\n')
-    selection = str(selection)
-    if selection == 'n':
-        print(f'You moved north.')
-        player1.move('n')
-    elif selection == 's':
-        print(f'You moved south.')
-    elif selection == 'e':
-        print(f'You moved east.')
-    elif selection == 'w':
-        print(f'You moved west.')
-    elif selection == 'w':
-        print(f'You moved west.')
-    elif selection == 'q':
-        print("So long, partner!")
-    else:
-        print('You typed something other than n, s, e, w, or q!')
+        f'Location: {player1.player_room} | Type n, s, e, and w to move north, south, east, or west to move. Type q to quit.\n')
+    try:
+        selection = str(selection)
+        if selection == 'n':
+            print(f'You try to move north.')
+            player1.move('n')
+        elif selection == 's':
+            print(f'You try to move south.')
+            player1.move('s')
+        elif selection == 'e':
+            print(f'You try to move east.')
+            player1.move('e')
+        elif selection == 'w':
+            print(f'You try to move west.')
+            player1.move('w')
+        elif selection == 'q':
+            print("So long, partner!")
+        else:
+            print('Please type: n, s, e, w, or q!')
+    except ValueError:
+        print("Please enter one of the letters: n, s, e, w, or q")
